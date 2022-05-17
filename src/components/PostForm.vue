@@ -15,16 +15,14 @@
 <!--        type="text"-->
 <!--        placeholder="Описание">-->
 <!--    Новый v-modal-->
-        <input
-            v-model="post.titles"
-            class="input"
+        <my-input
+            v-model="post.title"
             type="text"
-            placeholder="Название">
-        <input
+            placeholder="Название"/>
+        <my-input
             v-model="post.body"
-            class="input"
             type="text"
-            placeholder="Описание">
+            placeholder="Описание"/>
     <my-button
                style="align-self: flex-end; margin-top: 15px"
             @click="createPost"
@@ -33,14 +31,12 @@
 </template>
 
 <script>
-import MyButton from "@/components/UI/MyButton";
 export default {
   name: "PostForm",
-  components: {MyButton},
   data() {
     return {
       post: {
-        titles: '',
+        title: '',
         body: ''
       }
     }
@@ -54,17 +50,21 @@ export default {
         body: ''
       }
     }
+  },
+  watch: {
+    post: {
+      handler(newValue) {
+        console.log(newValue)
+      },
+      // deep tracking
+      deep: true
+    }
   }
 }
 </script>
 
 <style scoped>
-.input {
 
-  border: 2px solid orangered;
-  padding: 10px 15px;
-  margin-top: 15px;
-}
 form {
   display: flex;
   flex-direction: column;
